@@ -1,0 +1,68 @@
+
+
+
+
+input[type="text"],
+input[type="number"],
+textarea,
+input[type="file"],
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 0px;
+    transition: border-color 0.3s;
+    width: 280px; ;
+}
+input[type="file"]{
+    padding: 2px;
+    
+}
+input[type="text"]:focus
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #80bdff;
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    width: 20px;
+}
+
+button[type="submit"] {
+    background-color: #020101;
+    color: white;
+    width: 20px;
+}
+
+button[type="submit"]:hover {
+    background-color: #f20505;
+    width: 20px;
+}
+
+.reset-button {
+    background-color: #020101;
+    color: rgb(255, 255, 255);
+    margin-left: 5px; }
+
+.reset-button:hover {
+    background-color: #f20505;
+}

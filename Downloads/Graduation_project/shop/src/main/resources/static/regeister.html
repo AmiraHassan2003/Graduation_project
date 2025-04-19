@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="css/login.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="css/style - Copy.css">
+        <title>Register</title>
+    </head>
+    <body>
+        <section>
+            <div class="box2">
+                <div class="value">
+                    <form>
+                        <h2>Register</h2>
+                        <div class="input">
+                            <input type="text" required id="first_name" name="first_name">
+                            <label for="">first_name</label>
+                        </div>
+                        <div class="input">
+                            <input type="text" required id="last_name" name="last_name">
+                            <label for="">last_name</label>
+                        </div>
+                        <div class="input">
+                            <input type="text" required id="email" name="email">
+                            <label for="">Email</label>
+                        </div>
+                        <div class="input">
+                            <input type="password" required id="password" name="password">
+                            <label for="">password</label>
+                        </div>
+                        <div class="input">
+                            <input type="tel" required  id="phone" name="phone">
+                            <label for="">Phone</label>
+                        </div>
+                        <div class="input">
+                            <input type="text" required  id="address" name="address">
+                            <label for="">Address</label>
+                        </div>
+                        <div>
+                            <button  id="myButton" class="btn hvr-hover">Submit</button>
+                        </div>
+                    </form>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                    <script>
+                    $(document).ready(function() {
+                        $('#myButton').click(function() {
+                        var url = "http://localhost:8080/auth/register";
+                        var formData = {
+                            first_name: $("#first_name").val(),
+                            last_name: $("#last_name").val(),
+                            email: $("#email").val(),
+                            phone: $("#phone").val(),
+                            password: $("#password").val(),
+                            address: $("#address").val(),
+                        };
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(formData),
+                            dataType: "json",
+                            success: function() {
+                                alert("good")
+                            },
+                        });
+                    })});
+                    </script>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
