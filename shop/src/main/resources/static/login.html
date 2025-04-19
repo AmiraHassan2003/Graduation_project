@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/login.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="css/style - Copy.css">
+        <title>LOGIN</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="js/holder.js" defer></script>
+    </head>
+    <body>
+        <section>
+            <div class="box">
+                <div class="value">
+                    <form >                       
+                        <h2>Welcome</h2>
+                        <div class="input">
+                            <input type="email" required id="email" name="email">
+                            <label for="">Email</label>
+                        </div>
+                        <div class="input">
+                            <input type="password" required id="password" name="password">
+                            <label for="">password</label>
+                        </div>
+                        <div class="forget">
+                            <label for=""><input type="checkbox">Remember me  <a href="#">Forget password</a> </label>
+                            
+                        </div>
+                         <button  id="submit" class="btn hvr-hover" type="button">log in</button>
+                        <div class="regester">
+                            <p> Don't have a account <a href="#" id="re">Regester</a></p>
+                        </div>                       
+                    </form>   
+                   
+                    <script>
+                        
+                        $(document).ready(function() {
+                            console.log("hello");
+                            $('#submit').click(function() {
+                                console.log("Button clicked"); // Check if the button click is detected
+                                var url = "http://localhost:8080/auth/authenticate";
+                                var formData = {
+                                    email: $("#email").val(),
+                                    password: $("#password").val(),
+                                };
+                
+                                console.log("Sending data:", JSON.stringify(formData));
+                
+                                $.ajax({
+                                    url: url,
+                                    type: "POST",
+                                    contentType: "application/json",
+                                    data: JSON.stringify(formData),
+                                    dataType: "json",
+                                    success: function(response) {
+                                        console.log("Success function called");                                    
+                                         setToken(response.token);
+                                          var user="ROLE_USER"
+                                          var admin="ROLE_ADMIN"
+                                           if (response.role===user){
+                                            window.location.replace("http://localhost:8080/index.html");
+                                           }
+                                           else if (response.role===admin) {
+                                            console.log("admin")
+                                           window.location.replace("http://localhost:8080/home-Admin.html");
+                                              }
+                                         else {
+                                            console.log("else")
+                                            window.location.replace("http://localhost:8080/login.html");
+                                        }
+                                    },
+                                    error: function(jqXHR, textStatus, errorThrown) {
+                                        console.log("Error:", textStatus, errorThrown);
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
